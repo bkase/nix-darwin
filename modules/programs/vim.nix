@@ -27,7 +27,7 @@ let
     name = "vim";
     vimrcConfig.customRC = config.environment.etc."vimrc".text;
     vimrcConfig.vam = {
-      knownPlugins = pkgs.vimPlugins // cfg.extraKnownPlugins;
+      knownPlugins = pkgs.vimPlugins // cfg.customPlugins;
       pluginDictionaries = cfg.plugins;
     };
   };
@@ -59,7 +59,7 @@ in {
       '';
     };
 
-    programs.vim.extraKnownPlugins = mkOption {
+    programs.vim.customPlugins = mkOption {
       type = types.attrsOf types.package;
       default = {};
       example = literalExample
