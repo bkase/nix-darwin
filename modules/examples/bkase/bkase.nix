@@ -2,6 +2,7 @@
 let
   fastarcheyosx = pkgs.callPackage ./src/fastarcheyosx/c.nix {};
   scmpuff = pkgs.callPackage ./src/scmpuff/c.nix {};
+  highlight = pkgs.callPackage ./src/highlight/c.nix {};
 in
 {
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 12;
@@ -20,12 +21,13 @@ in
   environment.systemPackages = with pkgs; [
     fastarcheyosx
     scmpuff
+    highlight
 
     asciinema
     fzf
     gettext
     git
-    silver-searcher
+    ripgrep
     jq
     arcanist
     wget
