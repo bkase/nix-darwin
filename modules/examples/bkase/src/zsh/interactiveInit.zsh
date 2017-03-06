@@ -1,6 +1,6 @@
 export HISTFILE=~/.zshistory;
-export HISTSIZE=10000;
-export SAVEHIST=5000;
+export HISTSIZE=100000;
+export SAVEHIST=100000;
 
 # Less Colors for Man Pages
 # http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
