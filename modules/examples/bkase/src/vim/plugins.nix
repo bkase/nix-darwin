@@ -29,7 +29,7 @@
      "vimproc"
   ]; } ];
 
-  programs.vim.customPlugins = ({
+  programs.vim.extraKnownPlugins = ({
     lightline-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "vim-lightline-2017-02-13";
       src = pkgs.fetchgit {
