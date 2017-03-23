@@ -19,6 +19,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    cmake
     fastarcheyosx
     scmpuff
     highlight
