@@ -27,6 +27,8 @@
 
      "neomake"
      "vimproc"
+
+     "idris-vim"
   ]; } ];
 
   programs.vim.extraKnownPlugins = ({
