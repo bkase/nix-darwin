@@ -4,8 +4,8 @@ let
   pureZshSrc = pkgs.fetchFromGitHub {
     owner = "bkase";
     repo = "pure";
-    rev = "79e437b7c63e6d738efc16038325155bd3596a14";
-    sha256 = "0gnv9zbq4jysvlg9ili1bf0r23gj5qlirn6h1v4mjr6nn43bk5ms";
+    rev = "73c37b738ef5fa608404d827ba274e1c43a73a8f";
+    sha256 = "0dbdkbvx5jbfjax02hllrbkaz6zc1b2a91953k63yyh8m5f9k6cv";
   };
   pureZsh = pkgs.stdenvNoCC.mkDerivation rec {
     name = "pure-zsh-${version}";
