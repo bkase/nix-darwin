@@ -23,6 +23,7 @@ in
     fastarcheyosx
     scmpuff
     highlight
+    watchman
 
     ocaml
     opam
