@@ -20,6 +20,7 @@
      "psc-ide-vim"
      "purescript-vim"
      "vim-jinja"
+     "vim-reason-loader"
 
      "gitgutter"
      "fugitive"
@@ -32,6 +33,15 @@
   ]; } ];
 
   programs.vim.extraKnownPlugins = ({
+    vim-reason-loader = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "vim-reason-loader-2017-04-29";
+      src = pkgs.fetchgit {
+        url = "git://github.com/reasonml/vim-reason-loader";
+        rev = "52dec4a6fd2a1d1dcc270b7360b135cd41acca0f";
+        sha256 = "14wpqam370k64q2ivq3wvbhgml4gglzza8hvdz2x6dbhy473linv";
+      };
+    };
+
     lightline-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "vim-lightline-2017-02-13";
       src = pkgs.fetchgit {
