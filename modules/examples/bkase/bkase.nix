@@ -24,6 +24,11 @@ in
     scmpuff
     highlight
 
+    ocaml
+    opam
+    ocamlPackages.merlin
+    ocamlPackages.camlp4
+
     asciinema
     fzf
     gettext

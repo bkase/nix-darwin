@@ -101,3 +101,6 @@ vf() {
 vff() {
   res=$(find . -type f -print0 -name '*'"$1"'*' | fzf +m) && vim "$res" || return 1
 }
+
+eval $(opam config env)
+
