@@ -17,6 +17,11 @@ in
   ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    coq = pkgs.coq.override {
+      csdp = null;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     cmake
@@ -29,6 +34,8 @@ in
     opam
     ocamlPackages.merlin
     ocamlPackages.camlp4
+
+    coq
 
     asciinema
     fzf

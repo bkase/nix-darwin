@@ -2,6 +2,9 @@
 
 {
   programs.vim.plugins = [ { names = [
+     "coquille"
+     "vimbufsync"
+
      "vim-addon-nix"
      "youcompleteme"
      "lightline-vim"
@@ -33,6 +36,24 @@
   ]; } ];
 
   programs.vim.extraKnownPlugins = ({
+    vimbufsync = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "vimbufsync-2017-05-08";
+      src = pkgs.fetchgit {
+        url = "git://github.com/let-def/vimbufsync";
+        rev = "650f9aefecd1aa00dfe4ceb60a623096951ec3dc";
+        sha256 = "1wx9687hw833b6m5xhw8ig3ik9k9ccxrc628cfx41ay48vzyfbip";
+      };
+    };
+
+    coquille = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "coquille-2017-03-22";
+      src = pkgs.fetchgit {
+        url = "git://github.com/the-lambda-church/coquille";
+        rev = "39990d139519d0aa46e976402f2b2dee0c41f33d";
+        sha256 = "0vscnh7qy2b7r2raswjynpzhv3vh8ws2ig7y98vqmghr3d4yfy88";
+      };
+    };
+
     vim-reason-loader = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "vim-reason-loader-2017-04-29";
       src = pkgs.fetchgit {
