@@ -6,7 +6,7 @@ let
 in
 {
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 12;
-  system.defaults.NSGlobalDomain.KeyRepeat = 0;
+  system.defaults.NSGlobalDomain.KeyRepeat = 1;
 
   system.defaults.finder.AppleShowAllExtensions = true;
   system.defaults.finder.FXEnableExtensionChangeWarning = false;
