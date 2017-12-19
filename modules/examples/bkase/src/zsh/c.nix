@@ -48,31 +48,6 @@ in
       interactiveShellInit = "source ${./interactiveInit.zsh}";
     };
 
-    environment.shellAliases = {
-      v = "vim";
-      vi = "vim";
-      ls = "ls --color=auto --group-directories-first";
-      l = "ls";
-      mv = "mv -i";
-      cp = "cp -i";
-      rm = "rm -i";
-      c = "clear && archey";
-      cls = "clear && archey && ls";
-      gc = "git commit";
-      wlog = "git log --decorate --oneline";
-      gl = "git log --decorate";
-      ggp = "git grep";
-      gcob = "git checkout -b";
-      gps = "git push";
-      grb = "git rebase";
-      gsh = "git show";
-      gcp = "git cherry-pick";
-      gd = "git diff";
-      gf = "git fetch";
-      gcl = "git clone";
-      gb = "git branch";
-    };
-
     environment.variables = {
       PATH = "$PATH:~/.cargo/bin:~/go_appengine:~/.cabal/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/local/share/npm/bin:/usr/texbin:/Users/bkase/android-sdk/tools:/Users/bkase/android-sdk/platform-tools:/Users/bkase/android-ndk-r9b:/Users/bkase/google-cloud-sdk/bin:~/bin:/Users/bkase/.local/bin:/Library/TeX/texbin";
     };

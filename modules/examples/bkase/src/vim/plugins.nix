@@ -35,7 +35,7 @@
      "idris-vim"
   ]; } ];
 
-  programs.vim.extraKnownPlugins = ({
+  programs.vim.customPlugins = ({
     vimbufsync = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "vimbufsync-2017-05-08";
       src = pkgs.fetchgit {

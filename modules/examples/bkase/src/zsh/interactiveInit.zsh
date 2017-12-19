@@ -38,6 +38,31 @@ export LS_COLORS
 touch /tmp/.cwd
 cd `cat /tmp/.cwd`
 
+
+# TODO: Why do my aliases not work in environment.shellAliases anymore
+alias v="vim"
+alias vi="vim"
+alias ls="ls --color=auto --group-directories-first"
+alias l="ls"
+alias mv="mv -i"
+alias cp="cp -i"
+alias rm="rm -i"
+alias c="clear && archey"
+alias cls="clear && archey && ls"
+alias gc="git commit"
+alias wlog="git log --decorate --oneline"
+alias gl="git log --decorate"
+alias ggp="git grep"
+alias gcob="git checkout -b"
+alias gps="git push"
+alias grb="git rebase"
+alias gsh="git show"
+alias gcp="git cherry-pick"
+alias gd="git diff"
+alias gf="git fetch"
+alias gcl="git clone"
+alias gb="git branch"
+
 eval "$(scmpuff init -s)"
 
 _gen_fzf_default_opts() {
