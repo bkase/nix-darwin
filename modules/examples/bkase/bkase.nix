@@ -25,6 +25,8 @@ in
 
   environment.systemPackages = with pkgs; [
     cmake
+    bsdiff
+
     fastarcheyosx
     scmpuff
     highlight

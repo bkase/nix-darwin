@@ -317,14 +317,18 @@ endfunction
     let g_fzf_layout = { 'down': '~40%' }
     set rtp+=~/.fzf
 
+    if executable('rg')
+      " Use rg over grep
+      set grepprg=rg\ --vimgrep\ --no-heading
+      set grepformat=%f:%l:%c:%m,%f:%l:%m
+      endif
+
     let g:fzf_files_options =
       \ '--preview "(highlight -O ansi {} | cat {}) 2> /dev/null | head -'.&lines.'"'
 
     command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview('right:50%'),
-      \   <bang>0)
+      \    'rg --column --line-number --no-heading --color=always --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1, fzf#vim#with_preview('right:50%'), <bang>0)
 
     " Golang wants REAL TABS
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
