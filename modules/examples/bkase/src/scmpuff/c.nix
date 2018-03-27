@@ -5,7 +5,7 @@ let
   arch = if (stdenv.system == "x86_64-linux" || stdenv.isDarwin) then "amd64" else "386";
   sys = if stdenv.isDarwin then "darwin" else "linux";
   ext = if stdenv.isDarwin then "zip" else "tar.gz";
-  sha = if stdenv.isDarwin then "1b6if0l7qjbiakgzgx6yzkdyasxfh0sma5w28475m0xx6vr4cbil" else "1n2w7swn9za2iq0c5ma8fr4fj2cnsn13wsjlbd7g4pl0wczgqqz7";
+  sha = if stdenv.isDarwin then "1b6if0l7qjbiakgzgx6yzkdyasxfh0sma5w28475m0xx6vr4cbil" else "0h8rp1dgjqgdybhj7ndj530bgwsrsdxwi9qwg47l716nh0fwrh7w";
   src = (if stdenv.isDarwin then fetchzip else fetchurl) {
     url = "https://github.com/mroth/scmpuff/releases/download/v${version}/scmpuff_${version}_${sys}_${arch}.${ext}";
     sha256 = sha;
