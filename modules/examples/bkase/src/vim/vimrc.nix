@@ -245,22 +245,59 @@ function! LightlineMode()
 endfunction
 
     "lightline
+    "let g:lightline#ale#indicator_checking = "\uf110"
+    "let g:lightline#ale#indicator_warnings = "\uf071"
+    "let g:lightline#ale#indicator_errors = "\uf05e"
+    "let g:lightline#ale#indicator_ok = "\uf00c"
+
+    let g:lightline#ale#indicator_checking = "⊚"
+    let g:lightline#ale#indicator_warnings = "⚠"
+    let g:lightline#ale#indicator_errors = "✖︎"
+    let g:lightline#ale#indicator_ok = "✓"
+
+    let g:ale_sign_column_always = 1
+    let g:ale_sign_error = '✖︎'
+    let g:ale_sign_warning = '⚠'
+    let g:ale_echo_cursor = 0
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 1
+
+    highlight ALEErrorSign ctermbg=0
+    highlight ALEWarningSign ctermbg=0
+    highlight ALEWarning ctermbg=10
+    highlight ALEError ctermbg=10
+
     let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \              [ 'lineinfo' ],
+      \              [ 'percent' ] ]
       \ },
       \ 'component': {
       \   'lineinfo': ' %3l:%-2v',
+      \ },
+      \ 'component_expand': {
+      \   'linter_checking': 'lightline#ale#checking',
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors',
+      \   'linter_ok': 'lightline#ale#ok'
+      \ },
+      \ 'component_type': {
+      \   'linter_checking': 'left',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \   'linter_ok': 'left',
       \ },
       \ 'component_function': {
       \   'readonly': 'LightlineReadonly',
       \   'fileformat': 'LightlineFileformat',
       \   'fugitive': 'LightlineFugitive',
       \   'modified': 'LightlineModified',
-      \   'mode': 'LightlineMode'
+      \   'mode': 'LightlineMode',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -281,9 +318,9 @@ endfunction
     let g:javascript_conceal_super          = "Ω"
 
     " Fixup js config
-    let g:jsx_ext_required = 0
-    let g:neomake_javascript_enabled_makers = ['eslint']
-    autocmd! BufWritePost * Neomake
+    "let g:jsx_ext_required = 0
+    "let g:neomake_javascript_enabled_makers = ['eslint']
+    "autocmd! BufWritePost * Neomake
     " because vim-javascript clobbers the completion
     autocmd! BufRead *.js set omnifunc=flowcomplete#Complete
 
@@ -463,7 +500,7 @@ endfunction
     " Insert type of expression under cursor
     nmap <silent> <leader>hT :GhcModTypeInsert<CR>
     " GHC errors and warnings
-    nmap <silent> <leader>hc :Neomake ghcmod<CR>
+    "nmap <silent> <leader>hc :Neomake ghcmod<CR>
 
     " open the neomake error window automatically when an error is found
     let g:neomake_open_list = 2
@@ -480,7 +517,7 @@ endfunction
           \ exec "set path^=".s:default_path
 
     " Haskell Lint
-    nmap <silent> <leader>hl :Neomake hlint<CR>
+    "nmap <silent> <leader>hl :Neomake hlint<CR>
 
     " Options for Haskell Syntax Check
     let g:neomake_haskell_ghc_mod_args = '-g-Wall'
