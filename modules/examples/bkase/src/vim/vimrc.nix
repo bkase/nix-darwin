@@ -262,10 +262,13 @@ endfunction
     let g:ale_open_list = 1
     let g:ale_keep_list_window_open = 1
 
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_save = 1
+
     highlight ALEErrorSign ctermbg=0
     highlight ALEWarningSign ctermbg=0
-    highlight ALEWarning ctermbg=10
-    highlight ALEError ctermbg=10
+    highlight clear ALEWarning
+    highlight clear ALEError
 
     let g:lightline = {
       \ 'colorscheme': 'solarized',
@@ -329,6 +332,14 @@ endfunction
     execute "set rtp+=".s:ocamlmerlin."/vim"
     execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
     let g:syntastic_ocaml_checkers=['merlin']
+
+    augroup fmt
+      autocmd!
+      autocmd BufEnter *.ml set autoread
+      autocmd BufEnter *.mli set autoread
+      autocmd BufWritePost *.ml undojoin | exec "!ocamlformat --inplace %:p" | redraw!
+      autocmd BufWritePost *.mli undojoin | exec "!ocamlformat --inplace %:p" | redraw!
+    augroup END
 
     " Ocaml and Reason
     "if !empty(system('which opam'))
