@@ -33,9 +33,29 @@
      "vimproc"
 
      "idris-vim"
+     "vim-pony"
+     "dhall-vim"
   ]; } ];
 
-  programs.vim.customPlugins = ({
+  programs.vim.extraKnownPlugins = ({
+    dhall-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "dhall-vim-2018-06-26";
+      src = pkgs.fetchgit {
+        url = "git://github.com/vmchale/dhall-vim";
+        rev = "6284aaf3183947e19030889ae3c658b30e467aad";
+        sha256 = "0bk24qmfwszzw7i75hsbpwa4ya7g498kybar4lcskm0fw8d1cfdj";
+      };
+    };
+
+    vim-pony = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "vim-pony-2017-09-30";
+      src = pkgs.fetchgit {
+        url = "git://github.com/jakwings/vim-pony";
+        rev = "e90be86915d88f502b28b012eeae178d93784644";
+        sha256 = "0dk5g9yyn87jj23ajv6w3jx7gbx9vg3a22fkjj6lkiyhhlyxbrg4";
+      };
+    };
+
     vimbufsync = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "vimbufsync-2017-05-08";
       src = pkgs.fetchgit {

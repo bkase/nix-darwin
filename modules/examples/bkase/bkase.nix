@@ -53,6 +53,16 @@ in
 
     nix-repl
     nox
+    nodejs
+    pandoc
+    ponyc
+    dhall
+    dhall.prelude
+    dhall-nix
+    dhall-bash
+    dhall-json
+
+    texlive.combined.scheme-full
   ];
 
   environment.extraOutputsToInstall = [ "man" ];
