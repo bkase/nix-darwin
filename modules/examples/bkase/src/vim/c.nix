@@ -211,28 +211,6 @@
     "make solarized dark the default
     set bg=dark
 
-    "lightline
-    let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'mode_map': { 'c': 'NORMAL' },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'lineinfo': ' %3l:%-2v',
-      \ },
-      \ 'component_function': {
-      \   'readonly': 'LightlineReadonly',
-      \   'fileformat': 'LightlineFileformat',
-      \   'fugitive': 'LightlineFugitive',
-      \   'modified': 'LightlineModified',
-      \   'mode': 'LightlineMode'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
 function! LightlineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? "" : &modified ? '+' : &modifiable ? "" : '-'
 endfunction
@@ -270,6 +248,69 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ""
 endfunction
 
+    "lightline
+    "let g:lightline#ale#indicator_checking = "\uf110"
+    "let g:lightline#ale#indicator_warnings = "\uf071"
+    "let g:lightline#ale#indicator_errors = "\uf05e"
+    "let g:lightline#ale#indicator_ok = "\uf00c"
+
+    let g:lightline#ale#indicator_checking = "⊚"
+    let g:lightline#ale#indicator_warnings = "⚠"
+    let g:lightline#ale#indicator_errors = "✖︎"
+    let g:lightline#ale#indicator_ok = "✓"
+
+    let g:ale_sign_column_always = 1
+    let g:ale_sign_error = '✖︎'
+    let g:ale_sign_warning = '⚠'
+    let g:ale_echo_cursor = 0
+    let g:ale_open_list = 1
+    let g:ale_keep_list_window_open = 1
+
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_save = 1
+
+    highlight ALEErrorSign ctermbg=0
+    highlight ALEWarningSign ctermbg=0
+    highlight clear ALEWarning
+    highlight clear ALEError
+
+    let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \              [ 'lineinfo' ],
+      \              [ 'percent' ] ]
+      \ },
+      \ 'component': {
+      \   'lineinfo': ' %3l:%-2v',
+      \ },
+      \ 'component_expand': {
+      \   'linter_checking': 'lightline#ale#checking',
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors',
+      \   'linter_ok': 'lightline#ale#ok'
+      \ },
+      \ 'component_type': {
+      \   'linter_checking': 'left',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \   'linter_ok': 'left',
+      \ },
+      \ 'component_function': {
+      \   'readonly': 'LightlineReadonly',
+      \   'fileformat': 'LightlineFileformat',
+      \   'fugitive': 'LightlineFugitive',
+      \   'modified': 'LightlineModified',
+      \   'mode': 'LightlineMode',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+
     let g:javascript_conceal=1
     let g:javascript_plugin_jsdoc = 1
     let g:javascript_plugin_flow = 1
@@ -284,22 +325,22 @@ endfunction
     let g:javascript_conceal_super          = "Ω"
 
     " Fixup js config
-    let g:jsx_ext_required = 0
-    let g:neomake_javascript_enabled_makers = ['eslint']
-    autocmd! BufWritePost * Neomake
+    "let g:jsx_ext_required = 0
+    "let g:neomake_javascript_enabled_makers = ['eslint']
+    "autocmd! BufWritePost * Neomake
     " because vim-javascript clobbers the completion
     autocmd! BufRead *.js set omnifunc=flowcomplete#Complete
 
     " Ocaml and Reason
     if !empty(system('which opam'))
       " Merlin plugin
-      let s:ocamlmerlin=system('stripped-opam-config-var-share.sh') . "/merlin"
+      let s:ocamlmerlin=system('opam config var share') . "/merlin"
       execute "set rtp+=".s:ocamlmerlin."/vim"
       execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
       let g:syntastic_ocaml_checkers=['merlin']
 
       " Reason plugin which uses Merlin
-      let s:reasondir=system('stripped-opam-config-var-share.sh') . "/reason"
+      let s:reasondir=system('opam config var share') . "/reason"
       execute "set rtp+=".s:reasondir."/editorSupport/VimReason"
       let g:syntastic_reason_checkers=['merlin']
     else
@@ -418,9 +459,9 @@ endfunction
     \ }
 
     " Generate haskell tags with codex and hscope
-    map <leader>tg :!codex update --force<CR>:call system("git-hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
+    "map <leader>tg :!codex update --force<CR>:call system("git-hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
 
-    map <leader>tt :TagbarToggle<CR>
+    "map <leader>tt :TagbarToggle<CR>
 
     set csprg=hscope
     set csto=1 " search codex tags first
@@ -460,7 +501,7 @@ endfunction
     " Insert type of expression under cursor
     nmap <silent> <leader>hT :GhcModTypeInsert<CR>
     " GHC errors and warnings
-    nmap <silent> <leader>hc :Neomake ghcmod<CR>
+    "nmap <silent> <leader>hc :Neomake ghcmod<CR>
 
     " open the neomake error window automatically when an error is found
     let g:neomake_open_list = 2
@@ -477,7 +518,7 @@ endfunction
           \ exec "set path^=".s:default_path
 
     " Haskell Lint
-    nmap <silent> <leader>hl :Neomake hlint<CR>
+    "nmap <silent> <leader>hl :Neomake hlint<CR>
 
     " Options for Haskell Syntax Check
     let g:neomake_haskell_ghc_mod_args = '-g-Wall'

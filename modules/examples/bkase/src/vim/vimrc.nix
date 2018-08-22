@@ -328,10 +328,10 @@ endfunction
     autocmd! BufRead *.js set omnifunc=flowcomplete#Complete
 
     " HACK ocaml for O(1) Labs
-    let s:ocamlmerlin="/home/bkase/.opam/4.05.0/share/merlin"
-    execute "set rtp+=".s:ocamlmerlin."/vim"
-    execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-    let g:syntastic_ocaml_checkers=['merlin']
+    "let s:ocamlmerlin="/home/bkase/.opam/4.05.0/share/merlin"
+    "execute "set rtp+=".s:ocamlmerlin."/vim"
+    "execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+    "let g:syntastic_ocaml_checkers=['merlin']
 
     augroup fmt
       autocmd!
@@ -342,19 +342,19 @@ endfunction
     augroup END
 
     " Ocaml and Reason
-    "if !empty(system('which opam'))
-      " Merlin plugin
-    "  let s:ocamlmerlin=system('stripped-opam-config-var-share.sh') . "/merlin"
-    "  execute "set rtp+=".s:ocamlmerlin."/vim"
-    "  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-    "  let g:syntastic_ocaml_checkers=['merlin']
+    if !empty(system('which opam'))
+     " Merlin plugin
+      let s:ocamlmerlin=system('stripped-opam-config-var-share.sh') . "/merlin"
+      execute "set rtp+=".s:ocamlmerlin."/vim"
+      execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+      let g:syntastic_ocaml_checkers=['merlin']
 
-      " Reason plugin which uses Merlin
-    "  let s:reasondir=system('stripped-opam-config-var-share.sh') . "/reason"
-    "  execute "set rtp+=".s:reasondir."/editorSupport/VimReason"
-    "  let g:syntastic_reason_checkers=['merlin']
-   " else
-   " endif
+     " Reason plugin which uses Merlin
+      let s:reasondir=system('stripped-opam-config-var-share.sh') . "/reason"
+      execute "set rtp+=".s:reasondir."/editorSupport/VimReason"
+      let g:syntastic_reason_checkers=['merlin']
+    else
+    endif
 
     " Find stuff
     nnoremap gt :bnext<CR>

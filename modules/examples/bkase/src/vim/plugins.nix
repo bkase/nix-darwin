@@ -29,7 +29,8 @@
      "fugitive"
      "vim-markdown"
 
-     "neomake"
+     "ale-1.8.0"
+     "lightline-ale"
      "vimproc"
 
      "idris-vim"
@@ -38,6 +39,24 @@
   ]; } ];
 
   programs.vim.extraKnownPlugins = ({
+    "ale-1.8.0" = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "ale-1.8.0";
+      src = pkgs.fetchgit {
+        url = "git://github.com/w0rp/ale";
+        rev = "164c711b3da5a51a2323a3bd613df251ce455ca5";
+        sha256 = "135xb70cyrawp2bpwv6mnayw5s8ms8798x0mg03i0h68dhv5z8ds";
+      };
+    };
+
+    lightline-ale = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "lightline-ale-2017-05-08";
+      src = pkgs.fetchgit {
+        url = "git://github.com/maximbaz/lightline-ale";
+        rev = "9fed1e8b278364dec5acd52e034eb302dca8ce0d";
+        sha256 = "0d0hvcq58nssmw82m92557azq4x6i0mz4wm640zi09whnkq5kcma";
+      };
+    };
+
     dhall-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "dhall-vim-2018-06-26";
       src = pkgs.fetchgit {
