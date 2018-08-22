@@ -24,6 +24,7 @@
      "purescript-vim"
      "vim-jinja"
      "vim-reason-loader"
+     "vim-coffee-script"
 
      "gitgutter"
      "fugitive"
