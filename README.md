@@ -1,5 +1,7 @@
 [<img src="https://lnl7.github.io/nix-darwin/images/nix-darwin.png" width="200px" alt="logo" />](https://github.com/LnL7/nix-darwin)
 
+# DEPRECATED: see [bkase/life](bkase/life) for my new environment
+
 # nix-darwin
 
 [![Build Status](https://travis-ci.org/LnL7/nix-darwin.svg?branch=master)](https://travis-ci.org/LnL7/nix-darwin)
